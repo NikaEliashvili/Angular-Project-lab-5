@@ -1,0 +1,244 @@
+<div class="form_wrapper">
+  <div class="form_container">
+    <div class="title_container">
+      <h2>Registration Form</h2>
+    </div>
+
+    <div class="row clearfix">
+      <div class="">
+        <form
+          [formGroup]="registrationForm"
+          (ngSubmit)="onSubmit()"
+          class="form"
+        >
+          <div class="row clearfix">
+            <div class="col_half">
+              <div class="input_field">
+                <span>
+                  <fa-icon aria-hidden="true" [icon]="faUser"></fa-icon>
+                </span>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  formControlName="name"
+                  [ngClass]="
+                    registrationForm.get('name')?.invalid &&
+                    (registrationForm.get('name')?.dirty ||
+                      registrationForm.get('name')?.touched)
+                      ? 'is-invalid'
+                      : ''
+                  "
+                />
+              </div>
+              <div
+                *ngIf="
+                  registrationForm.get('name')?.invalid &&
+                  (registrationForm.get('name')?.dirty ||
+                    registrationForm.get('name')?.touched)
+                "
+              >
+                <div class="error-message">
+                  Name is required, minLength is 2 and should contain only
+                  letters.
+                </div>
+              </div>
+            </div>
+            <div class="col_half">
+              <div class="input_field">
+                <span>
+                  <fa-icon aria-hidden="true" [icon]="faUser"></fa-icon>
+                </span>
+                <input
+                  type="text"
+                  name="surname"
+                  placeholder="Last Name"
+                  formControlName="surname"
+                  [ngClass]="
+                    registrationForm.get('surname')?.invalid &&
+                    (registrationForm.get('surname')?.dirty ||
+                      registrationForm.get('surname')?.touched)
+                      ? 'is-invalid'
+                      : ''
+                  "
+                />
+              </div>
+              <div
+                *ngIf="
+                  registrationForm.get('surname')?.invalid &&
+                  (registrationForm.get('surname')?.dirty ||
+                    registrationForm.get('surname')?.touched)
+                "
+              >
+                <div class="error-message">
+                  Surname should contain only letters and minLenght is 2.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="input_field select_option">
+            <select formControlName="city">
+              <option value="" disabled selected hidden>Choose a city</option>
+              <option *ngFor="let city of cities" [value]="city.name">
+                {{ city.name }}
+              </option>
+            </select>
+            <div class="select_arrow"></div>
+          </div>
+          <div>
+            <div class="input_field">
+              <span>
+                <fa-icon aria-hidden="true" [icon]="faPhone"></fa-icon>
+              </span>
+              <input
+                type="text"
+                name="phoneNumber"
+                placeholder="Phone Number: 5xx xx xx xx"
+                formControlName="phoneNumber"
+                [ngClass]="
+                  registrationForm.get('phoneNumber')?.invalid &&
+                  (registrationForm.get('phoneNumber')?.dirty ||
+                    registrationForm.get('phoneNumber')?.touched)
+                    ? 'is-invalid'
+                    : ''
+                "
+              />
+            </div>
+            <div
+              *ngIf="
+                registrationForm.get('phoneNumber')?.invalid &&
+                (registrationForm.get('phoneNumber')?.dirty ||
+                  registrationForm.get('phoneNumber')?.touched)
+              "
+            >
+              <div class="error-message">
+                Phone Number should contain only digits and starts with 5.
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="input_field">
+              <span>
+                <fa-icon aria-hidden="true" [icon]="faEnvelope"></fa-icon>
+              </span>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                formControlName="email"
+                [ngClass]="
+                  registrationForm.get('email')?.invalid &&
+                  (registrationForm.get('email')?.dirty ||
+                    registrationForm.get('email')?.touched)
+                    ? 'is-invalid'
+                    : ''
+                "
+              />
+            </div>
+            <div
+              *ngIf="
+                registrationForm.get('email')?.invalid &&
+                (registrationForm.get('email')?.dirty ||
+                  registrationForm.get('email')?.touched)
+              "
+            >
+              <div class="error-message">
+                Email is required! Use correct format.
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="input_field">
+              <span>
+                <fa-icon aria-hidden="true" [icon]="faLock"></fa-icon>
+              </span>
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                formControlName="password"
+                [ngClass]="
+                  registrationForm.get('password')?.invalid &&
+                  (registrationForm.get('password')?.dirty ||
+                    registrationForm.get('password')?.touched)
+                    ? 'is-invalid'
+                    : ''
+                "
+              />
+            </div>
+            <div
+              *ngIf="
+                registrationForm.get('password')?.invalid &&
+                (registrationForm.get('password')?.dirty ||
+                  registrationForm.get('password')?.touched)
+              "
+            >
+              <div class="error-message">Password is required!</div>
+            </div>
+          </div>
+          <div>
+            <div class="input_field">
+              <span>
+                <fa-icon aria-hidden="true" [icon]="faLock"></fa-icon>
+              </span>
+              <input
+                type="password"
+                name="repeatPassword"
+                placeholder="Confirm Password"
+                formControlName="repeatPassword"
+                [ngClass]="
+                  registrationForm.get('repeatPassword')?.invalid &&
+                  (registrationForm.get('repeatPassword')?.dirty ||
+                    registrationForm.get('repeatPassword')?.touched)
+                    ? 'is-invalid'
+                    : ''
+                "
+              />
+            </div>
+            <div
+              *ngIf="
+                registrationForm.get('repeatPassword')?.invalid &&
+                (registrationForm.get('repeatPassword')?.dirty ||
+                  registrationForm.get('repeatPassword')?.touched)
+              "
+            >
+              <div class="error-message">
+                Password is required! <br />
+                Or incorrect password
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="input_field checkbox_option">
+              <input
+                type="checkbox"
+                id="cb1"
+                formControlName="termsAndConditions"
+              />
+              <label for="cb1">I agree with terms and conditions</label>
+            </div>
+            <div
+              *ngIf="
+                registrationForm.get('termsAndConditions')?.invalid &&
+                (registrationForm.get('termsAndConditions')?.dirty ||
+                  registrationForm.get('termsAndConditions')?.touched)
+              "
+            >
+              <div class="error-message">Agreement is required</div>
+            </div>
+          </div>
+
+          <button class="button" value="Register">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div [ngClass]="submitted ? 'darken' : 'hidden'"></div>
+<div [ngClass]="submitted ? 'subscribed' : 'hidden'">
+  <h2 class="text">Registered</h2>
+  <span>
+    <fa-icon [icon]="faCheck" class="icon"></fa-icon>
+  </span>
+</div>

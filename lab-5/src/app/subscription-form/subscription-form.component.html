@@ -1,0 +1,96 @@
+<div class="form_wrapper">
+  <div class="form_container">
+    <div class="title_container">
+      <h2>Subscription Form</h2>
+    </div>
+
+    <div class="row clearfix">
+      <div class="">
+        <form
+          #subscriptionForm="ngForm"
+          (ngSubmit)="onSubmit()"
+          class="form"
+          novalidate
+        >
+          <div class="input_field">
+            <span><fa-icon aria-hidden="true" [icon]="faUser"></fa-icon></span>
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              [(ngModel)]="model.name"
+              required
+              pattern="^[a-zA-Z]{2,}$"
+              class="form-control"
+              #name="ngModel"
+            />
+          </div>
+          <div
+            *ngIf="name.invalid && (name.dirty || name.touched)"
+            class="error-message"
+          >
+            Name is required and should contain only letters (minimum 2
+            characters).
+          </div>
+
+          <div class="input_field">
+            <span><fa-icon aria-hidden="true" [icon]="faUser"></fa-icon></span>
+            <input
+              type="text"
+              name="surname"
+              placeholder="Surname (optional)"
+              [(ngModel)]="model.surname"
+              pattern="^[a-zA-Z]{2,}$"
+              class="form-control"
+              #surname="ngModel"
+            />
+          </div>
+          <div
+            *ngIf="surname.invalid && (surname.dirty || surname.touched)"
+            class="error-message"
+          >
+            Surname should contain only letters and be at least 2 characters
+            long.
+          </div>
+
+          <div class="input_field">
+            <span
+              ><fa-icon aria-hidden="true" [icon]="faEnvelope"></fa-icon
+            ></span>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              [(ngModel)]="model.email"
+              required
+              email
+              class="form-control"
+              #email="ngModel"
+            />
+          </div>
+          <div
+            *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+            class="error-message"
+          >
+            Email is required and should be in a valid format.
+          </div>
+
+          <button
+            type="submit"
+            [disabled]="!subscriptionForm.form.valid"
+            class="button"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div [ngClass]="submitted ? 'darken' : 'hidden'"></div>
+<div [ngClass]="submitted ? 'subscribed' : 'hidden'">
+  <h2 class="text">Subscribed</h2>
+  <span>
+    <fa-icon [icon]="faCheck" class="icon"></fa-icon>
+  </span>
+</div>
